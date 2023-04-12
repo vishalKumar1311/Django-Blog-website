@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   {% load bootstrap5 %}
+   {% bootstrap_css %}
+   {% bootstrap_javascript %}
+   <title>Profile</title>
+</head>
+<body>
+   <style>
+      .regform img{
+             width: 150px;
+             height: 150px;
+             border-radius: 100%;
+             align-items: center; 
+      }
+      .regform{
+         gap: 2px;
+      }
+   </style>
+   <div class="main_container">
+   <form action="" class="regform" method="POST" enctype="multipart/form-data">
+   {%csrf_token%}
+   <div style="display: flex; align-items: center; flex-direction: column; justify-content: center;" >
+      <img src="{{request.user.profile.image.url}}" alt="image">
+      <p>{{request.user}}</p>
+   </div>
+   
+   <!-- {{fprofile.as_p}} -->
+   {{fprofile.name.label}}
+   {{fprofile.name}}
+   {{fprofile.email.label}}
+   {{fprofile.email}}
+   {{fprofile.state.label}}
+   {{fprofile.state}}
+   {{fprofile.image.label}}
+   {{fprofile.image}}
+   <br>
+   <button type="submit" class="btn btn-primary">Update Profile</button>
+   </form>
+   
+</div>
+   
+    
+</body>
+</html>

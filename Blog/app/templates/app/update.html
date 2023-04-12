@@ -1,0 +1,31 @@
+{% extends 'app/main.html' %}  
+
+{% block content %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<style>
+   a{
+      text-decoration: none;
+   }
+   .row{
+      display: block;
+   }
+</style>
+
+   <div class="mycontainer" style="margin-top: 3rem; margin-bottom: 10rem;">
+   <h3>Add Post</h3>
+<div class="form-group">
+   
+   <form method="POST" class="cc" enctype="multipart/form-data">
+      {% csrf_token %}
+       
+         {{form.media}}
+         {{form.as_p}}
+      <button type="submit" class="btn btn-success">POST</button>
+   </form>
+</div>
+</div>
+    
+{% endblock %}

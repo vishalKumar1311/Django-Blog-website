@@ -1,0 +1,57 @@
+{% extends 'app/main.html' %}  
+
+{% block content %}
+<style>
+   .wblog a:hover{
+      background: #2d3748;
+      color: #ffffff;
+   }
+</style>
+<section class="wblog">
+   <h2>Create your own Blog</h2>
+   <p style="width: 50%; text-align: center; font-size: 0.8rem; font-family: Poppins; color: #1f1f1f; margin-top: 1.5rem;">Welcome to our blog website, where you can explore a diverse range of articles covering various topics that are both informative and entertaining. Our landing page is designed to provide you with an easy-to-navigate interface, making it simple for you to find the content that interests you the most.</p>
+   <a href="{% url 'create' %}" style="width: 100px; height: 35px; border: 2px solid black;display: flex; align-items: center; justify-content: center; margin-top: 2rem; border-radius: 5px;">Add Blog</a>
+</section>
+<h3 style="font-size: 27px; font-weight: 600; font-family: 'Poppins', sans-serif; margin-left: 13rem; margin-bottom: 2rem;">Latest Blog</h3>
+<div class="outermost">
+<div class="main_container">
+   {% for data in blog %}
+   <div class="container">
+      <div class="block1">
+         <img src="{{data.bimage.url}}" alt="the post image">
+      </div>
+      <div class="block2">
+         <div class="Post_category"><button class="btn">{{data.category}}</button></div>
+         <h3 class="heading"><a href="blogDetail/{{data.id}}"> {{data.title}}</a></h3>
+         <p class="desc">{{data.description | safe| slice:'0:150'}} </p>
+       <div class="b_profile">
+         <div class="bimg"><img src="{{data.user.profile.image.url}}" alt="pic"></div>
+         <div class="pinfo">
+            <h3>{{data.user}}</h3>
+            <p style="margin-bottom: 0; padding-bottom: 0;">{{data.date}}</p>
+         </div>
+      </div>
+      </div>
+      
+   </div>
+   {% endfor %}
+</div>
+<div class="category_box " style="display: flex; gap: 18px; flex-direction: column;" >
+<div class="category">
+   <div class="catlogo" style="display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-code" style="font-size: 1.5rem;"></i></div>
+   <h3><a href="{% url 'home' %}?q=Development"> Development</a></h3>
+</div>
+<div class="category">
+   <div class="catlogo" style="display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-utensils" style="font-size: 1.5rem;"></i></div>
+   <h3><a href="{% url 'home' %}?q=Food">Food</a></h3>
+</div>
+<div class="category">
+   <div class="catlogo" style="display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-suitcase-rolling" style="font-size: 1.5rem;"></i></div>
+   <h3><a href="{% url 'home' %}?q=Travel">Travel</a></h3>
+</div>
+</div>
+</div>
+
+       
+
+{% endblock %}

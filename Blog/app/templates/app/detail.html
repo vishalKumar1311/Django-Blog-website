@@ -1,0 +1,20 @@
+{% extends 'app/main.html' %}  
+
+{% block content %}
+<section class="details_container">
+   <div class="details">
+      <h3 class="heading" style="margin-bottom: 2rem;">{{blog.title}}</h3>
+      <div class="b_profile" style="align-items: flex-start; margin-bottom: 2rem;">
+         <div class="bimg"><img src="{{blog.user.profile.image.url}}" alt="pic"></div>
+         <div class="pinfo" >
+            <h3>{{blog.user}}</h3>
+            <p style="margin-bottom: 0;">{{blog.date}}</p>
+         </div>
+      </div>
+      <img src="{{blog.bimage.url}}" alt="">
+      <br><br>
+      <p class="desc">{{blog.description | safe}}</p>
+   </div>
+   </section>
+
+{% endblock %}

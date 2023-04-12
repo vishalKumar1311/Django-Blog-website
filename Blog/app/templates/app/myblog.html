@@ -1,0 +1,48 @@
+{% extends 'app/main.html' %}  
+
+{% block content %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<style>
+   a{
+      text-decoration: none;
+   }
+   .row{
+      display: block;
+   }
+   .card_container{
+      display: flex;
+      margin-top: 5rem;
+      justify-content: center;
+   }
+   .div_body{
+      height: 100vh;
+   }
+   .list-group-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+</style>
+<div class="div_body">
+<div class="card_container">
+<div class="card" style="width: 60%;">
+   <div class="card-header">
+     Blog Title
+   </div>
+   <ul class="list-group list-group-flush">
+     {% for i in myblog %}
+     
+     <li class="list-group-item">{{i.title | slice:'0:100'}} 
+      <div>
+      <button style="margin-left: 2rem;" type="button" class="btn btn-info"><a href="{% url 'update' i.id %}" style="color: #f3f3f3;">Edit</a></button> <button type="button" class="btn btn-danger" style="margin-left: 0.5rem;"><a href="{% url 'delete' i.id %}" style="color: #f3f3f3;">Delete</a></button>
+      </div>
+   </li>
+     {% endfor %}
+   </ul>
+ </div>
+</div>
+</div>
+{% endblock %}
